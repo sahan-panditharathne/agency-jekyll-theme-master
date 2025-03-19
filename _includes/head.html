@@ -1,58 +1,89 @@
 <head>
-  {% if site.analytics.google %}
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thamaya Solutions</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                    white: '#e5e4e3',
+                    black: '#1b1e1a',
+                    Teal: '#5b838d',
+                    Blue: '#9dd0c9'
+                    },
+                    fontFamily: {
+                    'body': ['"Poppins"'],
+                    },
+                    keyframes: {
+                        'slide-left': {
+                        from: { transform: 'translateX(0)' },
+                        to: { transform: 'translateX(-100%)' },
+                        },
+                    },
+                    animation: {
+                        'slide-left-infinite': 'slide-left 15s linear infinite',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .menu-item {
+                @apply hover:underline hover:underline-offset-4 hover:decoration-white hover:decoration-4;
+            }
 
-    gtag("config", "{{ site.analytics.google }}");
-  </script>
-  <!-- End Google Analytics -->
-  {% endif %}
+            .section-heading{
+                @apply text-4xl font-bold mb-12 underline underline-offset-8 decoration-teal-600
+            }
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="{{ site.description }}">
-  <meta name="author" content="{{ site.author }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+            .team-card-body {
+                @apply bg-white/50 text-center rounded-lg pb-4
+            }
 
-  <title>{% if page.title %}{{ page.title | append: " | " | append: site.title }}{% else %}{{ site.title }}{% endif %}</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Custom fonts for this template -->
-  <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
-  {% if site.data.style.fonts_urls %}
-    {% for font_url in site.data.style.fonts_urls %}
-      <link href="{{font_url}}" rel="stylesheet" type="text/css">
-    {% endfor %}
-  {% else %}
-    <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-  {% endif %}
-  <!-- Custom styles for this theme -->
-  <!--<link href="assets/css/agency.min.css" rel="stylesheet">-->
-  <link href="assets/css/agency.css" rel="stylesheet" />
-
-  <!-- Page container change top padding when nav shrinks -->
-  {% if page.layout == "page" %}
-  <style>
-    #pagecontainer {
-      padding-top: 150px;
-    }
-    @media only screen and (max-width: 991px) {
-      #pagecontainer {
-        padding-top: 100px;
-      }
-    }
-  </style>
-  {% endif %}
+            .team-card-image-container {
+               @apply rounded-t-lg overflow-hidden mb-4 aspect-[4/5] relative
+            }
+            .team-card-image {
+               @apply absolute inset-0 w-full h-full object-cover
+            }
+            .team-card-heading {
+               @apply font-bold text-xl
+            }
+            .team-card-desc {
+               @apply text-gray-800
+            }
+        }
+    </style>
+    <script>
+        function filterGallery(category) {
+            // Update active button state
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white');
+                btn.classList.add('bg-white');
+            });
+            event.currentTarget.classList.remove('bg-white');
+            event.currentTarget.classList.add('bg-teal-600', 'text-white');
+    
+            // Filter gallery items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    
+        // Initialize with 'all' filter active
+        document.addEventListener('DOMContentLoaded', () => {
+            filterGallery('all');
+        });
+    </script>
+    {% seo %}
 </head>

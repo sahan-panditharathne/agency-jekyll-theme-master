@@ -1,125 +1,76 @@
-<!-- Contact -->
-{% if site.locale and site.locale != "" and site.locale != nil %}
-<section class="page-section" id="{{ site.data.sitetext[site.locale].contact.section | default: "contact" }}">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading text-uppercase">
-          {{ site.data.sitetext[site.locale].contact.title | markdownify | default: Contact Us }}</h2>
-        <h3 class="section-subheading text-muted">{{ site.data.sitetext[site.locale].contact.text | default: "" }}</h3>
-      </div>
+<!-- Contact Us Section -->
+<section id="contact-us" class="py-16">
+    <div class="max-w-xl mx-auto px-4">
+        <h2 class="section-heading text-center">Contact Us</h2>
+            <!-- Contact Information -->
+            <div class="space-y-8">
+                <!-- Contact Details -->
+                <div class="bg-white/50 rounded-xl shadow-lg p-8 space-y-6">
+                    <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                    
+                    <!-- Address -->
+                    <div class="flex items-start space-x-4">
+                        <div class="text-teal-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Our Location</h4>
+                            <a href="{{site.map}}">
+                            <p class="text-gray-600 hover:underline">{{site.address}}</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex items-start space-x-4">
+                        <div class="text-teal-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Phone</h4>
+                            <p class="text-gray-600">{{site.phone}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex items-start space-x-4">
+                        <div class="text-teal-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Email</h4>
+                            <p class="text-gray-600">{{site.email}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="flex items-start space-x-4">
+                        <div class="text-teal-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Business Hours</h4>
+                            <p class="text-gray-600">Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            <p class="text-gray-600">Saturday & Sunday: Closed</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button 
+                        class="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-700 transition duration-300"
+                        >
+                        BOOK A CALL
+                        </button>
+                    </div>
+                </div>
+            </div>
     </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <form id="contactForm"
-          action="https://formspree.io/{% if site.formspree_form_path %}{{ site.formspree_form_path }}{% else %}{{ site.email }}{% endif %}"
-          novalidate="novalidate" method="POST">
-          <!--name="sentMessage"-->
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="name" class="form-control" id="name" type="text"
-                  placeholder="{{ site.data.sitetext[site.locale].contact.name | default: "Name*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.name-validation | default: "Please enter your name." }}">
-                <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group">
-                <input name="_replyto" class="form-control" id="email" type="email"
-                  placeholder="{{ site.data.sitetext[site.locale].contact.email | default: "Email*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.email-validation | default: "Please enter your email address." }}">
-                <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group">
-                <input name="phone" class="form-control" id="phone" type="tel"
-                  placeholder="{{ site.data.sitetext[site.locale].contact.phone | default: "Phone Number*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.phone-validation | default: "Please enter your phone number." }}">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <textarea name="message" class="form-control" id="message"
-                  placeholder="{{ site.data.sitetext[site.locale].contact.message | default: "Message*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.message-validation | default: "Please enter a message." }}"></textarea>
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <input type="hidden" name="_subject" id="email-subject"
-              value="{{ site.data.sitetext[site.locale].contact.subject | default: "Contact Form Submission" }}">
-            <div class="clearfix"></div>
-            <div class="col-lg-12 text-center">
-              <div id="success"></div>
-              <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase"
-                type="submit">{{ site.data.sitetext[site.locale].contact.submit | default: "Send Message" }}</button>
-            </div>
-            <input type="text" name="_gotcha" style="display:none">
-            <input type="hidden" name="_next" value="#" />
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 </section>
-{% else %}
-<section class="page-section" id="{{ site.data.sitetext.contact.section | default: "contact" }}">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading text-uppercase">
-          {{ site.data.sitetext.contact.title | markdownify | default: Contact Us }}</h2>
-        <h3 class="section-subheading text-muted">{{ site.data.sitetext.contact.text | default: "" }}</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <form id="contactForm"
-          action="https://formspree.io/{% if site.formspree_form_path %}{{ site.formspree_form_path }}{% else %}{{ site.email }}{% endif %}"
-          novalidate="novalidate" method="POST">
-          <!--name="sentMessage"-->
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input name="name" class="form-control" id="name" type="text"
-                  placeholder="{{ site.data.sitetext.contact.name | default: "Name*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext.contact.name-validation | default: "Please enter your name." }}">
-                <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group">
-                <input name="_replyto" class="form-control" id="email" type="email"
-                  placeholder="{{ site.data.sitetext.contact.email | default: "Email*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext.contact.email-validation | default: "Please enter your email address." }}">
-                <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group">
-                <input name="phone" class="form-control" id="phone" type="tel"
-                  placeholder="{{ site.data.sitetext.contact.phone | default: "Phone Number*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext.contact.phone-validation | default: "Please enter your phone number." }}">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <textarea name="message" class="form-control" id="message"
-                  placeholder="{{ site.data.sitetext.contact.message | default: "Message*" }}"
-                  required="required" data-validation-required-message="{{ site.data.sitetext.contact.message-validation | default: "Please enter a message." }}"></textarea>
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <input type="hidden" name="_subject" id="email-subject"
-              value="{{ site.data.sitetext.contact.subject | default: "Contact Form Submission" }}">
-            <div class="clearfix"></div>
-            <div class="col-lg-12 text-center">
-              <div id="success"></div>
-              <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase"
-                type="submit">{{ site.data.sitetext.contact.submit | default: "Send Message" }}</button>
-            </div>
-            <input type="text" name="_gotcha" style="display:none">
-            <input type="hidden" name="_next" value="#" />
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-{% endif %}
-<!-- End Contact -->

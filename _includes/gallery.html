@@ -1,0 +1,54 @@
+<!-- Gallery Section -->
+<section class="max-w-6xl mx-auto px-4 py-16" id="gallery">
+    <h2 class="section-heading">Gallery</h2>
+    <p class="mt-4 text-lg max-w-4xl mb-8 text-gray-600">
+        At Thamaya Solutions, we thrive on the art of bringing vision to life.We are more than an agency, we are;
+    </p>
+    <div class="flex flex-wrap gap-4 mb-8">
+        <button onclick="filterGallery('all')" class="filter-btn px-4 py-2 bg-white rounded-full hover:bg-teal-600 hover:text-white transition active">
+            All
+        </button>
+        <button onclick="filterGallery('luxury-packaging')" class="filter-btn px-4 py-2 bg-white rounded-full hover:bg-teal-600 hover:text-white transition">
+            Luxury Packaging
+        </button>
+        <button onclick="filterGallery('fabrications')" class="filter-btn px-4 py-2 bg-white rounded-full hover:bg-teal-600 hover:text-white transition">
+            Fabrications
+        </button>
+        <button onclick="filterGallery('design-concepts')" class="filter-btn px-4 py-2 bg-white rounded-full hover:bg-teal-600 hover:text-white transition">
+            Design & Concepts
+        </button>
+        <button onclick="filterGallery('creative-direction')" class="filter-btn px-4 py-2 bg-white rounded-full hover:bg-teal-600 hover:text-white transition">
+            Creative Direction
+        </button>
+        <button onclick="filterGallery('events')" class="filter-btn px-4 py-2 bg-white rounded-full hover:bg-teal-600 hover:text-white transition">
+            Events
+        </button>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+        {% for file in site.static_files %}
+            {% if file.path contains '/assets/img/events' and file.extname == '.jpg' %}
+                <div class="gallery-item aspect-square bg-gray-100 rounded-lg overflow-hidden" data-category="events">
+                    <img src="{{ file.path }}" alt="Gallery item" class="w-full h-full object-cover" />
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for file in site.static_files %}
+            {% if file.path contains '/assets/img/packaging' and file.extname == '.jpg' %}
+                <div class="gallery-item aspect-square bg-gray-100 rounded-lg overflow-hidden" data-category="luxury-packaging">
+                    <img src="{{file.path}}" alt="Gallery item" class="w-full h-full object-cover" />
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for file in site.static_files %}
+            {% if file.path contains '/assets/img/fabrications' and file.extname == '.jpg' %}
+                <div class="gallery-item aspect-square bg-gray-100 rounded-lg overflow-hidden" data-category="fabrications">
+                    <img src="{{file.path}}" alt="Gallery item" class="w-full h-full object-cover" />
+                </div>
+            {% endif %}
+        {% endfor %}
+        <!-- Add more gallery items with appropriate data-category attributes -->
+    </div>
+</section>

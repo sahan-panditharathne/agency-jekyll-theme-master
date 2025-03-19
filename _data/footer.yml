@@ -1,0 +1,22 @@
+# _data/footer.yml
+columns:
+  - title: Contact Details
+    items:
+      - type: address
+        content: 125/1, Temple Road, Nawala.
+      - type: email
+        content: connect@thamaya.com
+  
+  - title: What we do
+    links:
+      - text: Design & Concepts
+        url: "#"
+      - text: Events
+        url: "#"
+      - text: Fabrications
+        url: "#"
+      - text: Creative Direction
+        url: "#"
+  
+  - title: Follow Us
+    social: true
